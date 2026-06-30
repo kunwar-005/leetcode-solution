@@ -63,3 +63,60 @@ public:
         }
     }
 };
+
+
+/*   this way we can solce this pro in o(1) space complexity (if we don't count the output as extra space) ear;ier we created two ectra arrays pos and neg to sepsrate the neg and poitive numbers but now be are comparing and storing the results in only one result array
+
+
+How do we avoid pos and neg?
+
+Notice something about the original array.
+
+Example:
+
+nums = [-7,-3,2,3,11]
+
+The largest square will always come from one of the ends.
+
+Why?
+
+Because the largest absolute value is always at either end of a sorted array.
+
+Example:
+
+-7  -3   2   3   11
+ ↑                  ↑
+49                 121
+
+The middle numbers can never have the largest square.
+
+
+class Solution {
+public:
+    vector<int> sortedSquares(vector<int>& nums) {
+
+        int left = 0;
+        int right = nums.size() - 1;
+
+        vector<int> ans(nums.size());
+
+        int k = nums.size() - 1;
+
+        while (left <= right) {
+
+            if (abs(nums[left]) > abs(nums[right])) {
+                ans[k] = nums[left] * nums[left];
+                left++;
+            }
+            else {
+                ans[k] = nums[right] * nums[right];
+                right--;
+            }
+
+            k--;
+        }
+
+        return ans;
+    }
+};
+*/
